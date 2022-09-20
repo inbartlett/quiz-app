@@ -1,13 +1,18 @@
-const express = require("express");
+const express = require("express")
 const app = express();
-const dotenv = require("dotenv");
-const cors = require("cors");
+const mongoose = require("mongoose")
+const dotenv = require("dotenv")
 
-dotenv.config();
-app.use(express.json());
-app.use(cors());
+dotenv.config()
+app.use(express.json())
 
-const PORT = process.env.PORT;
-app.listen(PORT, () => {
-  console.log(`Server running at: http://localhost:${PORT}`)
+mongoose.connect(process.env.DB_URL, { useNewUrlParser: true}, () => {
+  console.log("Connected to Database")
+})
+
+const userRoute = require("./routes/User")
+app.use("/user", userRoute)
+
+app.listen(8800, () => {
+  console.log("Server running on port 8800")
 })
