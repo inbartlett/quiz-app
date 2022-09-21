@@ -15,6 +15,9 @@ mongoose.connect(process.env.DB_URL, { useNewUrlParser: true }, () => {
 const userRoute = require("./routes/User");
 app.use("/user", userRoute);
 
+const classRoute = require("./routes/Class");
+app.use("/class", classRoute);
+
 app.listen(8800, () => {
   console.log("Server running on port 8800");
 });
