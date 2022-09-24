@@ -8,7 +8,7 @@ import Landing from "./pages/Landing";
 import Quiz from "./pages/Quiz";
 
 function App() {
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState({});
 
   return (
     <UserContext.Provider value={{ user, setUser }}>

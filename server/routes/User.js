@@ -2,6 +2,18 @@ const router = require("express").Router();
 const User = require("../models/User");
 const bcrypt = require("bcrypt");
 
+router.get("/:userId", async (req, res) => {
+  const { userId } = req.params;
+
+  const user = await User.findById({ _id: userId });
+
+  if (user) {
+    res.status(200).json({ status: 200, classes: user.classes });
+  } else {
+    res.status(400).json({ status: 400, message: "User does not exist" });
+  }
+});
+
 router.post("/register", async (req, res) => {
   const { username, email, password, isInstructor } = req.body;
 
