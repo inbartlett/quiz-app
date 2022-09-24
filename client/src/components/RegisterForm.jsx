@@ -6,8 +6,10 @@ function RegisterForm() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  // This function runs when we submit our form
   const registerUser = async () => {
     axios
+      // We need to send data to our server endpoint
       .post("http://localhost:8800/user/register", {
         username,
         email,
