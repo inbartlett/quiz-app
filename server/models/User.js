@@ -15,9 +15,9 @@ const UserSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    isInstructor: {
-      type: Boolean,
-      default: false,
+    classes: {
+      type: Array,
+      default: [],
     },
   },
   {

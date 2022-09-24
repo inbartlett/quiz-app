@@ -1,0 +1,23 @@
+[
+  {
+    "question": "What is the capital of Ohio?",
+    "choices": [
+      "Cleveland",
+      "Detroit",
+      "Columbus",
+      "Cincinnati",
+      "Springfield"
+    ],
+    "answer": "Columbus"
+  },
+  {
+    "question": "Which of the following states borders Indiana?",
+    "choices": ["Ohio", "New York", "Alaska", "California", "Hawaii"],
+    "answer": "Ohio"
+  },
+  {
+    "question": "What is the longest river in South America?",
+    "choices": ["Mississippi", "Nile", "Congo", "Amazon", "Wabash"],
+    "answer": "Amazon"
+  }
+]

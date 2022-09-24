@@ -18,6 +18,9 @@ app.use("/user", userRoute);
 const classRoute = require("./routes/Class");
 app.use("/class", classRoute);
 
+const quizRoute = require("./routes/Quiz");
+app.use("/quiz", quizRoute);
+
 app.listen(8800, () => {
   console.log("Server running on port 8800");
 });
