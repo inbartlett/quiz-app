@@ -1,9 +1,13 @@
 import axios from "axios";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { UserContext } from "../contexts/UserContext";
 
 function LoginForm() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const { setUser } = useContext(UserContext);
+  const navigate = useNavigate();
 
   // This function runs when we submit our form
   const loginUser = async () => {
@@ -14,7 +18,8 @@ function LoginForm() {
         password,
       }) // Since axios returns a promise we can use .then to get the response
       .then((response) => {
-        console.log(response.data);
+        setUser(response.data.user);
+        navigate("/dashboard");
       }) // Same with errors
       .catch((error) => {
         console.log(error.response.data);

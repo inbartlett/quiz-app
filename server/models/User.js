@@ -19,6 +19,10 @@ const UserSchema = new mongoose.Schema(
       type: Array,
       default: [],
     },
+    isInstructor: {
+      type: Boolean,
+      default: false,
+    },
   },
   {
     collection: "users",

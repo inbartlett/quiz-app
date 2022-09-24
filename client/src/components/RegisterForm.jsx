@@ -5,6 +5,7 @@ function RegisterForm() {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [isInstructor, setIsInstructor] = useState(false);
 
   // This function runs when we submit our form
   const registerUser = async () => {
@@ -14,6 +15,7 @@ function RegisterForm() {
         username,
         email,
         password,
+        isInstructor,
       })
       .then((response) => {
         console.log(response.data);
@@ -47,6 +49,9 @@ function RegisterForm() {
         value={password}
         onChange={(e) => setPassword(e.target.value)}
       />
+
+      <input type="checkbox" onClick={() => setIsInstructor(!isInstructor)} />
+      <label>Instructor?</label>
 
       <button type="button" onClick={registerUser}>
         Submit

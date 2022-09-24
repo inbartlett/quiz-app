@@ -3,7 +3,7 @@ const User = require("../models/User");
 const bcrypt = require("bcrypt");
 
 router.post("/register", async (req, res) => {
-  const { username, email, password } = req.body;
+  const { username, email, password, isInstructor } = req.body;
 
   const user = await User.findOne({ email });
 
@@ -14,6 +14,7 @@ router.post("/register", async (req, res) => {
       username,
       email,
       password: hashedPassword,
+      isInstructor,
     });
 
     await newUser.save();
