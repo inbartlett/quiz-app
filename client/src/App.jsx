@@ -1,4 +1,5 @@
 import { Routes, Route } from "react-router-dom";
+import Navbar from "./components/Navbar";
 import Class from "./pages/Class";
 import Dashboard from "./pages/Dashboard";
 import Landing from "./pages/Landing";
@@ -7,6 +8,7 @@ import Quiz from "./pages/Quiz";
 function App() {
   return (
     <div>
+      <Navbar />
       {/* React Router allows us to render different components based on the current URL */}
       <Routes>
         <Route path="/" element={<Landing />} />
