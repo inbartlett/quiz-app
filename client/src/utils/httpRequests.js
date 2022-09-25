@@ -15,5 +15,5 @@ export const loginUser = async ({ event, ...data }) => {
     ...data,
   });
 
-  console.log(response.data);
+  return response.data;
 };

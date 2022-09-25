@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import Field from "./Field";
 import { registerUser } from "../utils/httpRequests";
@@ -8,6 +9,7 @@ function RegisterForm() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isInstructor, setIsInstructor] = useState(false);
+  const navigate = useNavigate();
 
   const handleRegister = (event) => {
     registerUser({

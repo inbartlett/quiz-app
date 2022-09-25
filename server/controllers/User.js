@@ -1,4 +1,5 @@
 const User = require("../models/User");
+const Class = require("../models/Class");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
@@ -85,4 +86,15 @@ module.exports.logoutUser = async (req, res) => {
       }
     });
   }
+};
+
+module.exports.getClasses = async (req, res) => {
+  const { userId } = req.params;
+
+  const classes = await Class.find(
+    { students: { $in: [userId] } },
+    { _id: 1, courseName: 1 }
+  );
+
+  res.status(200).json({ status: 200, classes });
 };
