@@ -1,18 +1,10 @@
-const router = require("express").Router()
-const User = require("../models/User")
+const router = require("express").Router();
+const { registerUser, loginUser, logoutUser } = require("../controllers/User");
 
-router.post("/", async (req, res) => {
-  const { username, email, password } = req.body
+router.post("/register", registerUser);
 
-  const newUser = await new User({
-    username,
-    email,
-    password
-  }) 
+router.post("/login", loginUser);
 
-  await newUser.save()
-
-  res.status(200).json(newUser)
-})
+router.get("/logout", logoutUser);
 
 module.exports = router;
