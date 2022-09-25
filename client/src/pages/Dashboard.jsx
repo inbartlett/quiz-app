@@ -9,12 +9,10 @@ function Dashboard() {
   const [classes, setClasses] = useState(true);
 
   useEffect(() => {
-    axios
-      .get(`http://localhost:8800/user/${user.id}/classes`)
-      .then((response) => {
-        setClasses(response.data.classes);
-        setLoading(false);
-      });
+    axios.get(`/user/${user.id}/classes`).then((response) => {
+      setClasses(response.data.classes);
+      setLoading(false);
+    });
   }, []);
 
   return (

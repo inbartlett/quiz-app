@@ -2,7 +2,7 @@ import axios from "axios";
 
 export const registerUser = async ({ event, ...data }) => {
   event.preventDefault();
-  const response = await axios.post("http://localhost:8800/user/register", {
+  const response = await axios.post(`/user/register`, {
     ...data,
   });
 
@@ -11,7 +11,7 @@ export const registerUser = async ({ event, ...data }) => {
 
 export const loginUser = async ({ event, ...data }) => {
   event.preventDefault();
-  const response = await axios.post("http://localhost:8800/user/login", {
+  const response = await axios.post(`/user/login`, {
     ...data,
   });
 
