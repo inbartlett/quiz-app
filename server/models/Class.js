@@ -14,6 +14,10 @@ const ClassSchema = new Schema(
       type: Array,
       default: [],
     },
+    quizzes: {
+      type: Array,
+      default: [],
+    },
   },
   {
     collection: "classes",

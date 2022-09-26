@@ -5,6 +5,8 @@ import Dashboard from "./pages/Dashboard";
 import Landing from "./pages/Landing";
 import { UserContext } from "./context/UserContext";
 import { useState } from "react";
+import Class from "./pages/Class";
+import Quiz from "./pages/Quiz";
 
 function App() {
   const [user, setUser] = useState({});
@@ -16,6 +18,8 @@ function App() {
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/register" element={<RegisterForm />} />
         <Route path="/login" element={<LoginForm />} />
+        <Route path="/class/:classId" element={<Class />} />
+        <Route path="/class/:classId/quiz/:quizId" element={<Quiz />} />
         <Route path="*" element={"404 Not Found"} />
       </Routes>
     </UserContext.Provider>

@@ -40,3 +40,11 @@ module.exports.getStudents = async (req, res) => {
 
   res.status(200).json({ status: 200, students: studentNames });
 };
+
+module.exports.getQuizzes = async (req, res) => {
+  const { classId } = req.params;
+
+  const quizzes = await Class.findOne({ _id: classId }).distinct("quizzes");
+
+  res.status(200).json({ status: 200, quizzes });
+};
