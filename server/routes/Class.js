@@ -1,12 +1,9 @@
 const router = require("express").Router();
-const {
-  createClass,
-  getStudents,
-  getQuizzes,
-} = require("../controllers/Class");
+const createClass = require("../controllers/createClass");
+const fetchQuizzes = require("../controllers/fetchQuizzes");
+const verifyToken = require("../middlewares/verifyToken");
 
-router.post("/create", createClass);
-router.get("/:classId/students", getStudents);
-router.get("/:classId/quizzes", getQuizzes);
+router.post("/create", verifyToken, createClass);
+router.get("/:classId/quizzes", verifyToken, fetchQuizzes);
 
 module.exports = router;

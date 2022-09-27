@@ -2,11 +2,13 @@ import axios from "axios";
 import { useEffect } from "react";
 import { useState } from "react";
 import { useParams } from "react-router-dom";
+import Questions from "../components/Questions";
 
 function Quiz() {
   const { quizId } = useParams();
   const [quiz, setQuiz] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [startQuiz, setStartQuiz] = useState(false);
 
   useEffect(() => {
     axios.get(`/quiz/${quizId}`).then((response) => {
@@ -23,7 +25,8 @@ function Quiz() {
         <div>
           <h1>{quiz.quizName}</h1>
           <p>There are {quiz.questions.length} questions.</p>
-          <button>Start quiz</button>
+          <button onClick={() => setStartQuiz(true)}>Start quiz</button>
+          {startQuiz && <Questions questions={quiz.questions} />}
         </div>
       )}
     </div>

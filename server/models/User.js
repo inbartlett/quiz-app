@@ -19,8 +19,12 @@ const UserSchema = new Schema(
       required: true,
     },
     isInstructor: {
-      type: Boolean,
+      type: String,
       required: true,
+    },
+    refreshToken: {
+      type: String,
+      default: "",
     },
   },
   {

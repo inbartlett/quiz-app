@@ -6,10 +6,6 @@ const QuizSchema = new Schema(
       type: String,
       required: true,
     },
-    classId: {
-      type: String,
-      required: true,
-    },
     questions: {
       type: Array,
       required: true,
