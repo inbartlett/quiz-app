@@ -1,9 +1,15 @@
 import axios from "axios";
 import { useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
+import useAuth from "../hooks/useAuth";
 
 function Login({ setHasAccount }) {
+  const { setAuth } = useAuth();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/dashboard";
 
   const loginUser = async (e) => {
     e.preventDefault();
@@ -13,9 +19,14 @@ function Login({ setHasAccount }) {
         {
           email,
           password,
+        },
+        {
+          withCredentials: true,
         }
       );
-      console.log(data);
+
+      setAuth({ ...data });
+      navigate(from, { replace: true });
     } catch (err) {
       console.log(err);
     }

@@ -55,6 +55,7 @@ function Dashboard() {
 
   return !loading ? (
     <div>
+      {console.log(auth)}
       <h1>Dashboard</h1>
       <h2>Hello, {auth.displayName}.</h2>
       <h3>Classes</h3>
