@@ -9,7 +9,8 @@ function Login({ setHasAccount }) {
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
   const location = useLocation();
-  const from = location.state?.from?.pathname || "/dashboard";
+  // const from = location.state?.from?.pathname || "/dashboard";
+  const from = "/dashboard";
 
   const loginUser = async (e) => {
     e.preventDefault();
@@ -17,8 +18,8 @@ function Login({ setHasAccount }) {
       const { data } = await axios.post(
         "http://localhost:3300/api/users/login",
         {
-          email,
-          password,
+          email: "instructor@email.com",
+          password: "password",
         },
         {
           withCredentials: true,

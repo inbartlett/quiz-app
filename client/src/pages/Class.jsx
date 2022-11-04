@@ -4,6 +4,7 @@ import useAuth from "../hooks/useAuth";
 import axios from "axios";
 import useAxiosPrivate from "../hooks/useAxiosPrivate";
 import { Link } from "react-router-dom";
+import QuizBuilder from "../components/QuizBuilder";
 
 function Class() {
   const axiosPrivate = useAxiosPrivate();
@@ -80,20 +81,26 @@ function Class() {
     <div>
       <h1>Your quizzes</h1>
       {auth.isInstructor ? (
-        <form onSubmit={(e) => createQuiz(e)}>
-          <h3>Create a quiz</h3>
-          <input
-            type="text"
-            value={quizName}
-            onChange={(e) => setQuizName(e.target.value)}
-          />
-          <button>Create a quiz</button>
-        </form>
-      ) : null}
+        <button onClick={() => navigate(`/class/${classId}/quiz/create`)}>
+          Create Quiz
+        </button>
+      ) : // <form onSubmit={(e) => createQuiz(e)}>
+      //   <h3>Create a quiz</h3>
+      //   <label>Quiz Name: </label>
+      //   <input
+      //     type="text"
+      //     value={quizName}
+      //     onChange={(e) => setQuizName(e.target.value)}
+      //   />
+      //   <button>Create a quiz</button>
+      // </form>
+      null}
       <div>
         {quizzes.map((quiz) => (
           <h1>
-            <Link to="/quiz">{quiz.quizName}</Link>
+            <Link to={`/class/${classId}/quiz/${quiz._id}`}>
+              {quiz.quizName}
+            </Link>
           </h1>
         ))}
       </div>

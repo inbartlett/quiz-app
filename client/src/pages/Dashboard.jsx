@@ -3,13 +3,14 @@ import useAuth from "../hooks/useAuth";
 import useAxiosPrivate from "../hooks/useAxiosPrivate";
 import useRefreshToken from "../hooks/useRefreshToken";
 import { useNavigate } from "react-router-dom";
+import CreateCourse from "../components/CreateCourse";
+import CourseCard from "../components/CourseCard";
 
 function Dashboard() {
   const { auth } = useAuth();
-  const [classes, setClasses] = useState([]);
-  const [className, setClassName] = useState("");
-  const [loading, setLoading] = useState(true);
+  const [courses, setCourses] = useState([]);
   const refresh = useRefreshToken();
+  const [loading, setLoading] = useState(true);
   const axiosPrivate = useAxiosPrivate();
   const navigate = useNavigate();
 
@@ -17,18 +18,18 @@ function Dashboard() {
     let isMounted = true;
     const controller = new AbortController();
 
-    const fetchClasses = async () => {
+    const fetchCourses = async () => {
       try {
         const response = await axiosPrivate.get(`/users/${auth.id}/classes`, {
           signal: controller.signal,
         });
-        isMounted && setClasses(response.data.classes);
+        isMounted && setCourses(response.data.classes);
         setLoading(false);
       } catch (error) {
         navigate("/");
       }
     };
-    fetchClasses();
+    fetchCourses();
 
     return () => {
       isMounted = false;
@@ -36,44 +37,17 @@ function Dashboard() {
     };
   }, []);
 
-  const createClass = async (e) => {
-    e.preventDefault();
-    try {
-      setLoading(true);
-      const response = await axiosPrivate.post("/classes/create", {
-        courseName: className,
-      });
-
-      setClasses([...classes, response.data.class]);
-      setClassName("");
-      setLoading(false);
-    } catch (error) {
-      console.log(error);
-      navigate("/");
-    }
-  };
-
   return !loading ? (
     <div>
-      {console.log(auth)}
       <h1>Dashboard</h1>
       <h2>Hello, {auth.displayName}.</h2>
       <h3>Classes</h3>
-      {classes.map((classObj, index) => (
-        <h4 key={index} onClick={() => navigate(`/class/${classObj._id}`)}>
-          {classObj.courseName}
-        </h4>
+      {courses.map((classObj, index) => (
+        <CourseCard key={index} data={classObj} />
       ))}
-
-      <form onSubmit={(e) => createClass(e)}>
-        <h3>Create a class</h3>
-        <input
-          type="text"
-          value={className}
-          onChange={(e) => setClassName(e.target.value)}
-        />
-        <button>Create a class</button>
-      </form>
+      {auth.isInstructor == "true" && (
+        <CreateCourse state={{ courses, setCourses }} />
+      )}
     </div>
   ) : (
     <h1>Loading...</h1>

@@ -10,12 +10,9 @@ const fetchClasses = async (req, res) => {
       message: "You cannot view this user's classes.",
     });
   } else {
-    const classes = await Class.find(
-      {
-        students: { $in: userId },
-      },
-      { _id: 1, courseName: 1 }
-    );
+    const classes = await Class.find({
+      students: { $in: userId },
+    });
 
     res.status(200).json({ status: 200, classes });
   }

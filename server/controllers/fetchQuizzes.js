@@ -7,10 +7,7 @@ const fetchQuizzes = async (req, res) => {
   const isInstructor = req.userData.isInstructor === "false" ? false : true;
 
   const classData = await Class.findById({ _id: classId });
-  const quizzes = await Quiz.find(
-    { _id: { $in: [...classData.quizzes] } },
-    { _id: 1, quizName: 1 }
-  );
+  const quizzes = await Quiz.find({ _id: { $in: [...classData.quizzes] } });
 
   if (!classData.students.includes(id) && !isInstructor) {
     res.status(403).json({

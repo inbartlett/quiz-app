@@ -27,10 +27,7 @@ const createClass = async (req, res) => {
 
     res.status(201).json({
       status: 201,
-      class: {
-        _id: newClass._id,
-        courseName: newClass.courseName,
-      },
+      class: newClass,
     });
   }
 };

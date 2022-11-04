@@ -1,11 +1,16 @@
-import { useState } from "react";
-import quiz from "../sampleQuiz.json";
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import useAxiosPrivate from "../hooks/useAxiosPrivate";
 
 function Quiz() {
   const [questionNumber, setQuestionNumber] = useState(0);
   const [answer, setAnswer] = useState("");
   const [finalAnswers, setFinalAnswers] = useState({});
   const [isFinished, setIsFinished] = useState(false);
+  const [quiz, setQuiz] = useState({});
+  const [loading, setLoading] = useState(true);
+  const axiosPrivate = useAxiosPrivate();
+  const { classId, quizId } = useParams();
 
   const handleNextQuestion = () => {
     let currentState = finalAnswers;
@@ -25,6 +30,20 @@ function Quiz() {
       setQuestionNumber(questionNumber - 1);
     }
   };
+
+  useEffect(() => {
+    const fetchQuiz = async () => {
+      const response = await axiosPrivate.get(
+        `http://localhost:3300/api/quizzes/${classId}/${quizId}`
+      );
+      console.log(response.data);
+      setQuiz(response.data.quiz);
+      setLoading(false);
+    };
+    fetchQuiz();
+  }, []);
+
+  if (loading) return <h1>Loading...</h1>;
 
   return (
     <div>
@@ -56,7 +75,6 @@ function Quiz() {
       ) : (
         <>
           <h1>You are finished</h1>
-          <p>{JSON.stringify(finalAnswers)}</p>
           <div>
             {Object.keys(finalAnswers).map((answer, num) => (
               <>

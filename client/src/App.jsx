@@ -1,7 +1,6 @@
 import { Routes, Route, Link } from "react-router-dom";
-import Quiz from "./components/Quiz";
 import QUIZBACKUP from "./components/QUIZBACKUP";
-import Login from "./Login";
+import QuizBuilder from "./components/QuizBuilder";
 import Class from "./pages/Class";
 import Dashboard from "./pages/Dashboard";
 import Home from "./pages/Home";
@@ -14,8 +13,9 @@ function App() {
       <Route element={<RequireAuth />}>
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/class/:classId" element={<Class />} />
+        <Route path="/class/:classId/quiz/create" element={<QuizBuilder />} />
+        <Route path="/class/:classId/quiz/:quizId" element={<QUIZBACKUP />} />
       </Route>
-      <Route path="/quiz" element={<QUIZBACKUP />} />
       <Route path="*" element={"404 Not Found"} />
     </Routes>
   );
