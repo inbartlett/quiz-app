@@ -1,0 +1,21 @@
+{
+  "_id": "6334a288179db80e692c2d15",
+  "quizName": "Quiz 1",
+  "questions": [
+    {
+      "prompt": "What's 1 + 1?",
+      "choices": [1, 2, 3, 4],
+      "answer": 2
+    },
+    {
+      "prompt": "What's 1 * 1?",
+      "choices": [1, 2, 3, 4],
+      "answer": 1
+    },
+    {
+      "prompt": "What's 1 + 2?",
+      "choices": [1, 2, 3, 4],
+      "answer": 3
+    }
+  ]
+}

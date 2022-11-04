@@ -25,13 +25,13 @@ const loginUser = async (req, res) => {
     } else {
       const { _id: id, email, isInstructor } = existingUser;
       const accessToken = jwt.sign({ id, email, isInstructor }, ACCESS_SECRET, {
-        expiresIn: "15s",
+        expiresIn: "1m",
       });
       const refreshToken = jwt.sign(
         { id, email, isInstructor },
         REFRESH_SECRET,
         {
-          expiresIn: "30s",
+          expiresIn: "5m",
         }
       );
 
@@ -39,7 +39,7 @@ const loginUser = async (req, res) => {
         httpOnly: true,
         maxAge: 24 * 60 * 60 * 1000,
         sameSite: "None",
-        // secure: true,
+        secure: true,
       });
 
       existingUser.refreshToken = refreshToken;
@@ -48,7 +48,9 @@ const loginUser = async (req, res) => {
 
       res.status(202).json({
         status: 202,
-        message: "Logged in successfully.",
+        id: existingUser._id.toString(),
+        displayName: `${existingUser.firstName} ${existingUser.lastName}`,
+        isInstructor: existingUser.isInstructor,
         accessToken,
       });
     }

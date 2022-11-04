@@ -20,6 +20,7 @@ const fetchQuizzes = async (req, res) => {
   } else {
     res.status(200).json({
       status: 200,
+      courseName: classData.courseName,
       quizzes,
     });
   }

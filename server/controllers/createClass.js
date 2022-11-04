@@ -20,14 +20,17 @@ const createClass = async (req, res) => {
     const newClass = new Class({
       courseName,
       instructorId,
-      students: studentIds.toString().split(","),
+      students: [instructorId, ...studentIds.toString().split(",")],
     });
 
     await newClass.save();
 
     res.status(201).json({
       status: 201,
-      message: "Class created successfully.",
+      class: {
+        _id: newClass._id,
+        courseName: newClass.courseName,
+      },
     });
   }
 };
