@@ -1,17 +1,12 @@
-import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import useAxiosPrivate from "../hooks/useAxiosPrivate";
-import "../styles.css";
+import { useState } from "react";
+import quiz from "./sampleQuiz.json";
 
 function Quiz() {
+
   const [questionNumber, setQuestionNumber] = useState(0);
   const [answer, setAnswer] = useState("");
   const [finalAnswers, setFinalAnswers] = useState({});
   const [isFinished, setIsFinished] = useState(false);
-  const [quiz, setQuiz] = useState({});
-  const [loading, setLoading] = useState(true);
-  const axiosPrivate = useAxiosPrivate();
-  const { classId, quizId } = useParams();
 
   const handleNextQuestion = () => {
     let currentState = finalAnswers;
@@ -32,20 +27,6 @@ function Quiz() {
     }
   };
 
-  useEffect(() => {
-    const fetchQuiz = async () => {
-      const response = await axiosPrivate.get(
-        `http://localhost:3300/api/quizzes/${classId}/${quizId}`
-      );
-      console.log(response.data);
-      setQuiz(response.data.quiz);
-      setLoading(false);
-    };
-    fetchQuiz();
-  }, []);
-
-  if (loading) return <h1>Loading...</h1>;
-
   return (
     <div className="container">
       <p className="warning">
@@ -55,9 +36,10 @@ function Quiz() {
       {!isFinished ? (
         <div>
           <div>
+            <h2>Question #{questionNumber + 1}</h2>
             <h2>{quiz.questions[questionNumber].prompt}</h2>
             {quiz.questions[questionNumber].choices.map((choice) => (
-              <div>
+              <div className="questions">
                 <input
                   type="radio"
                   name={questionNumber}
@@ -69,12 +51,12 @@ function Quiz() {
             ))}
           </div>
           {questionNumber !== 0 && (
-            <button onClick={handlePrevQuestion}>Previous</button>
+            <button className="previousButton" onClick={handlePrevQuestion}>Previous</button>
           )}
           {questionNumber === quiz.questions.length - 1 ? (
-            <button onClick={handleNextQuestion}>Submit</button>
+            <button className="submitButton" onClick={handleNextQuestion}>Submit</button>
           ) : (
-            <button onClick={handleNextQuestion}>Next</button>
+            <button className="nextButton" onClick={handleNextQuestion}>Next</button>
           )}
         </div>
       ) : (
@@ -84,13 +66,14 @@ function Quiz() {
             {Object.keys(finalAnswers).map((answer, num) => (
               <>
                 <h3>
-                  Question {num + 1}:
-                  {finalAnswers[answer] == quiz.questions[num].answer
+                  Question {num + 1}: 
+                  {finalAnswers[answer] === quiz.questions[num].answer.toString()
                     ? "Correct"
                     : "Incorrect"}
                 </h3>
                 <p>{quiz.questions[num].prompt}</p>
                 <p>You chose: {finalAnswers[answer]}</p>
+                <p>Correct Answer: {quiz.questions[num].answer}</p>
               </>
             ))}
           </div>

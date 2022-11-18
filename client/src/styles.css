@@ -1,0 +1,51 @@
+.warning {
+    text-align: center;
+    font-size: 30px;
+    font-family: sans-serif;
+}
+
+.nextButton {
+    font-family: sans-serif;
+    background-color: lightblue;
+    color: black;
+    border: none;
+    margin: 0 5%;
+    border-radius: 5px;
+}
+
+.submitButton {
+    font-family: sans-serif;
+    justify-content: center;
+    background-color: lightblue;
+    color: black;
+    border: none;
+    border-radius: 5px;
+}
+
+.previousButton {
+    font-family: sans-serif;
+    background-color: lightblue;
+    color: black;
+    border: none;
+    margin: 0 5%;
+    border-radius: 5px;
+}
+
+.container {
+    width: 80%;
+    margin: auto;
+    border: 2px solid black;
+    border-radius: 15px;
+    text-align: center;
+    background-color: rgb(169, 166, 166);
+    color: black;
+    font-family: sans-serif;
+    padding-bottom: 2%;
+}
+
+.questions {
+    border: 2px black;
+    margin: auto auto;
+    width: 75%;
+    padding-bottom: 1%;
+}
