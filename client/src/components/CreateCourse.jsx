@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import useAxiosPrivate from "../hooks/useAxiosPrivate";
 import { axiosPrivate } from "../utils/axios";
+import "../CreateCourse.css";
 
 function CreateCourse({ state: { courses, setCourses } }) {
   const axiosPrivate = useAxiosPrivate();
@@ -29,25 +30,27 @@ function CreateCourse({ state: { courses, setCourses } }) {
   };
 
   return (
-    <form onSubmit={(e) => createCourse(e)}>
-      <h3>Create a Course</h3>
-      <label>Course Name: </label>
-      <input
-        type="text"
-        value={courseName}
-        onChange={(e) => setCourseName(e.target.value)}
-      />
-      <br></br>
-      <label>Student Emails: </label>
-      <br></br>
-      <textarea
-        cols="30"
-        rows="10"
-        value={students}
-        onChange={(e) => setStudents(e.target.value)}
-      ></textarea>
-      <button>Create Course</button>
-    </form>
+    <div className="create-course">
+      <form onSubmit={(e) => createCourse(e)}>
+        <h3>Create a Course</h3>
+        <label>Course Name: </label>
+        <input
+          type="text"
+          value={courseName}
+          onChange={(e) => setCourseName(e.target.value)}
+        />
+        <br></br>
+        <label>Student Emails: </label>
+        <br></br>
+        <textarea
+          cols="30"
+          rows="10"
+          value={students}
+          onChange={(e) => setStudents(e.target.value)}
+        ></textarea>
+        <button>Create Course</button>
+      </form>
+    </div>
   );
 }
 export default CreateCourse;

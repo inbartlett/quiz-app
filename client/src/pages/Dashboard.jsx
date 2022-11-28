@@ -42,9 +42,11 @@ function Dashboard() {
       <h1>Dashboard</h1>
       <h2>Hello, {auth.displayName}.</h2>
       <h3>Classes</h3>
-      {courses.map((classObj, index) => (
-        <CourseCard key={index} data={classObj} />
-      ))}
+      <div className="c-card-container">
+        {courses.map((classObj, index) => (
+          <CourseCard key={index} data={classObj} />
+        ))}
+      </div>
       {auth.isInstructor == "true" && (
         <CreateCourse state={{ courses, setCourses }} />
       )}

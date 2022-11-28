@@ -18,7 +18,8 @@ function Login({ setHasAccount }) {
       const { data } = await axios.post(
         "http://localhost:3300/api/users/login",
         {
-          email: "student@email.com",
+          email: "instructor@email.com",
+          // email: "student@email.com",
           password: "password",
         },
         {

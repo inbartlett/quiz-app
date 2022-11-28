@@ -1,0 +1,22 @@
+/* c-card-container shoudl be a 3xn grid of course cards that fills by row*/
+.c-card-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 1rem;
+    grid-auto-rows: minmax(100px, auto);
+    margin: auto 100px;
+
+}
+
+
+/* each course card should outline the cell and should be a 1/3rd of the page in width*/
+.c-card {
+  width: 75%;
+  border: 1px solid black;
+  padding: 1rem;
+  text-align: center;
+  border-radius: 10px;
+}
+  
+  
+  
